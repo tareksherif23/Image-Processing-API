@@ -1,1 +1,1 @@
-declare const x = 55;
+export {};

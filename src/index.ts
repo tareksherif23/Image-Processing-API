@@ -1,9 +1,12 @@
 import {Application} from 'express';
 
 const express = require('express');
+const imageRouter = require('./routes/imageRoutes');
+const requestLogger = require('./middleware/logger').requestLogger;
+
 const app: Application = express();
 
-const imageRouter = require('./routes/imageRoutes');
+app.use(requestLogger);
 app.use('/image', imageRouter);
 
 app.listen(3000, () => {
