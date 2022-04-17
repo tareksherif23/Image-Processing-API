@@ -12,3 +12,5 @@ app.use('/image', imageRouter);
 app.listen(3000, () => {
   console.log('Server started on host 3000..');
 });
+
+export default app;
