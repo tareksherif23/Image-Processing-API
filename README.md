@@ -44,6 +44,13 @@ npm run start
  $ npm run start       'for starting a production server' 
  $ npm run start:dev   'for starting a dev server with nodemon'
 ```
+
+## Endpoints 
+```sh
+http://you_app_host/images?filename={image_name}
+http://you_app_host/images?filename={image_name}&width={number}&height={number}
+```
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
