@@ -1,16 +1,16 @@
 import {Application} from 'express';
-
-const express = require('express');
-const imageRouter = require('./routes/imageRoutes');
-const requestLogger = require('./middleware/logger').requestLogger;
+import {router} from './routes/router';
+import {requestLogger} from './middleware/logger';
+import express from 'express';
 
 const app: Application = express();
+const PORT = 3000;
 
 app.use(requestLogger);
-app.use('/image', imageRouter);
+app.use('/', router);
 
 app.listen(3000, () => {
-  console.log('Server started on host 3000..');
+  console.log(`Server started on port ${PORT}`);
 });
 
 export default app;

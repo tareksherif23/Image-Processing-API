@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from 'express';
 
-exports.requestLogger = async (
+export const requestLogger = async (
   req: Request,
   res: Response,
   next: NextFunction
