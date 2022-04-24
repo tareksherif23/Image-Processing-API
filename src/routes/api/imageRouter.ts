@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import {validateQueryParams} from '../../middleware/validation';
 import {findImage} from '../../controllers/imageController';
-import {resizeImage} from '../../middleware/utils';
+import {resizeImage} from '../../services/imageProcessing';
 
 export const router = Router();
 
