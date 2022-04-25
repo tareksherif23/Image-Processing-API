@@ -1,14 +1,14 @@
-import {Request, Response, NextFunction} from 'express';
+import {Request, Response} from 'express';
+import {sharpResize} from '../services/imageProcessing';
 
 const fs = require('fs');
 const path = require('path');
 const imageDir = path.resolve('./images');
 const cacheDir = path.resolve('./cached');
 
-export const findImage = async (
+export const resizeImage = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ): Promise<void> => {
   // extract and type assert query params needed for processing
   const fileName: string = req.query.filename as string;
@@ -28,7 +28,10 @@ export const findImage = async (
           // return cached image with requested dimensions to save processing time
           return res.status(200).sendFile(resizedPath);
         } else {
-          return next(); // resize image with given width and height
+          (await sharpResize(filePath, width, height)).toFile(
+            resizedPath,
+            (): void => res.sendFile(resizedPath)
+          );
         }
       } else {
         // send the original default image if no width and height provided
